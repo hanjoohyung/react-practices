@@ -10,5 +10,5 @@ ex06 > React JSX 기반의 어플리케이션으로 리팩토링 : babel(transpi
 ex07 > ex00 Reconfiguration
 ex08 > JSX Tutorial
 
-- webpack-practices 
+- webpack-practices
 - babel-practices
