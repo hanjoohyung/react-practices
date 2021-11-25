@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+
+import Header from './Header'
+import Content from './Content'
 
 export default function() {
     /*
@@ -8,9 +11,9 @@ export default function() {
         <p>JSX Tutorials - 특징 2: Single Root node</p>
     */
     return (
-        <div id='App'>
-            <h2>App02</h2>
-            <p>JSX Tutorials - 특징 2: Single Root node</p>
-        </div>
+        <Fragment>
+            <Header />
+            <Content/>
+        </Fragment>
     )
 }

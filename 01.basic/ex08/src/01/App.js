@@ -3,7 +3,7 @@ import React from 'react';
 export default function() {
     return (
         <div>
-            <h2>YAMMI</h2>
+            <h2>App</h2>
             <p>JSX Tutorials - 특징 1: HTML과 차이점</p>
             {/*
                 1. 속성은 Camel Case
