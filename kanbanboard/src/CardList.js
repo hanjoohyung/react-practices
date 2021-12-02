@@ -11,6 +11,7 @@ export default function({title, cards}) {
                                     title={card.title}
                                     description = {card.description} 
                                     tasks = {card.tasks}
+                                    status = {card.status}
                                     /> 
             )}
         </div>

@@ -4,6 +4,7 @@ import cards from './assets/json/data.json';
 import styles from './assets/css/KanbanBoard.css';
 
 export default function() {
+    
     return (
         <div className={styles.KanbanBoard}>
             <CardList key='ToDo' title={'ToDo'} cards={ cards.filter((card) => card.status === 'ToDo') }/>
