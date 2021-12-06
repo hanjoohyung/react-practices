@@ -1,1 +1,0 @@
-확장 -> Reactjs code snippets 검색 하고 맨 위에거 설치 -> rcs나 rcc 하고 탭
