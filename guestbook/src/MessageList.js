@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useRef} from 'react';
+import React, {Fragment, useState, useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import Message from './Message';
@@ -7,13 +7,17 @@ import modalStyles from "./assets/scss/modal.scss";
 
 Modal.setAppElement('body');
 
-export default function MessageList({messages}) {
+export default function MessageList({messages, notifyMessage}) {
     const refForm = useRef(null);
     const [modalData, setModalData] = useState({isOpen: false}); 
-
+    useEffect(() => {
+        setTimeout(() => {
+        refForm.current && refForm.current.password.focus();
+        }, 200);
+    }, [modalData]);
     const nofigyDeleteMessage = (no) => {
         setModalData({
-            title: '작성시 입력했던 비밀번호를 입력 하세요.',
+            label: '작성시 입력했던 비밀번호를 입력 하세요.',
             isOpen: true,
             messageNo: no,
             password: ''
@@ -41,11 +45,12 @@ export default function MessageList({messages}) {
             
             // 비밀번호가 틀린 경우
             // jsonResult.data = null;
-            setModalData({}, Object.assign(modalData), {title: '잘못된 비밀번호 입니다.', password: ''});
+            setModalData(Object.assign({},modalData, {label: '잘못된 비밀번호 입니다.', password: ''}));
             // 삭제가 된 경우
             // jsonResult.data = messageNo;
-
-            console.log("Delete", modalData);
+            // setModalData({isOpen: false, password: ''})
+            // notifyMessage.delete(modalData.messageNo);
+            // console.log("Delete", modalData);
         } catch (err){
             console.log(err);
         }
@@ -73,7 +78,7 @@ export default function MessageList({messages}) {
                         ref={refForm}
                         className={styles.DeleteForm}
                         onSubmit={handleSubmit}>
-                        <label>{modalData.title}</label>
+                        <label>{modalData.label || ''}</label>
                         <input
                             type={'password'}
                             autoComplete={'off'}
