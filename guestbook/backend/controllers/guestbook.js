@@ -27,7 +27,7 @@ module.exports = {
                 ],
                 limit: 3
             });
-            res
+                res
                 .status(200)
                 .send({
                     result: 'success',

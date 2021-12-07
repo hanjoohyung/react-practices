@@ -29,28 +29,32 @@ export default function MessageList({messages, notifyMessage}) {
             if(e.target.password.value === '') {
                 return;
             } 
-            // const response = await fetch(`/api/${modalData.messageNo}`, {
-            //    method: 'delete',
-            //    header: {
-            //        'Content-Type': 'application/json',
-            //        'Accept': 'application/json'
-            //    },
-            //    body: JSON.stringify({password: modalData.password})
-            // });
-            // if(!response.ok) {
-            //    throw `${response.status}, ${response.statusText}`
-            // }
+            const response = await fetch(`/api/${modalData.messageNo}`, {
+                method: 'delete',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({password: modalData.password})
+             });
 
-            // const jsonResult = response.json;
+             if(!response.ok) {
+                throw `${response.status}, ${response.statusText}`
+             }
+
+            const json = await response.json();
             
             // 비밀번호가 틀린 경우
-            // jsonResult.data = null;
-            setModalData(Object.assign({},modalData, {label: '잘못된 비밀번호 입니다.', password: ''}));
+            if (!json.data) {
+                setModalData(Object.assign(modalData, {label: '잘못된 비밀번호 입니다.', password: ''}));
+                return;
+            };
             // 삭제가 된 경우
-            // jsonResult.data = messageNo;
-            // setModalData({isOpen: false, password: ''})
-            // notifyMessage.delete(modalData.messageNo);
-            // console.log("Delete", modalData);
+            // json.data = messageNo;
+            setModalData({isOpen: false, password: ''});
+
+            notifyMessage.delete(parseInt(json.data));
+
         } catch (err){
             console.log(err);
         }
