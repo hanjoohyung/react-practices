@@ -4,7 +4,7 @@ import Hook from './Hook';
 export default function App() {
     const [color, setColor] = useState('#000');
     const [show, setShow] = useState(true);
-
+                
     return (
         <Fragment>
             <h2>ex05 - Hook of Functional Component </h2>
