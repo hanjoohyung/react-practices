@@ -5,7 +5,7 @@ module.exports = (env) => ({
     entry: path.resolve(`src/${env.src}/index.js`),
     output: {
         path: path.resolve('public'),
-        filename: 'bundle.js',
+        filename: '/bundle.js',
         assetModuleFilename: 'assets/images/[hash][ext]'
     },
     module: {
